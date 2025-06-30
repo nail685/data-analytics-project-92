@@ -74,6 +74,7 @@ SELECT
     count(customer_id) AS age_count
 FROM customers
 GROUP BY age_category
+ORDER BY age_category
 
 --Data on the number of unique buyers and the revenue they generated per month
 select

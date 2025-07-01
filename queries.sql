@@ -58,7 +58,7 @@ order by avg_income
 --Revenue information by day of the week.
 select
 seller,
-coalesce(day_of_week, 'no date'),
+lower(day_of_week),
 COALESCE(sum(income), 0) as income
 from income_of_days
 group by day_of_week, seller, num_day
@@ -71,10 +71,9 @@ SELECT
         WHEN age BETWEEN 26 AND 40 THEN '26-40'
         ELSE '40+'
     END AS age_category,
-    count(customer_id) AS age_count
+    count(customer_id) AS age_countA
 FROM customers
 GROUP BY age_category
-ORDER BY age_category
 
 --Data on the number of unique buyers and the revenue they generated per month
 select
@@ -86,6 +85,9 @@ left join products p
 on s.product_id = p.product_id
 group by selling_month
 order by selling_month
+
+
+
 
 --Data on customers whose first purchase was during promotions
 with first_purchase AS (
